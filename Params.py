@@ -1,0 +1,56 @@
+import argparse
+
+
+def parse_args():
+	parser = argparse.ArgumentParser(description='Model Params')
+
+	parser.add_argument('--hidden_dim', default=64, type=int, help='embedding size')
+	parser.add_argument('--gnn_layer', default="[64,64,64]", type=str, help='gnn layers: number + dim')
+	parser.add_argument('--dataset', default='Tmall', type=str, help='name of dataset')
+	parser.add_argument('--point', default='for_meta_hidden_dim', type=str, help='')
+	parser.add_argument('--title', default='dim__64', type=str, help='title of model')
+	parser.add_argument('--sampNum', default=20, type=int, help='batch size for sampling')
+
+	parser.add_argument('--lr', default=1e-5, type=float, help='learning rate')
+	parser.add_argument('--opt_weight_decay', default=1e-4, type=float, help='weight decay regularizer')
+	parser.add_argument('--meta_opt_weight_decay', default=1e-4, type=float, help='weight decay regularizer')
+	parser.add_argument('--meta_lr', default=5e-4, type=float, help='_meta_learning rate')
+	parser.add_argument('--enable_meta_learning', dest='enable_meta_learning', action='store_true', default=False, help='enable BGNN + MetaWeightNet regularization')
+	parser.add_argument('--disable_meta_learning', dest='enable_meta_learning', action='store_false', help='disable BGNN + MetaWeightNet regularization if needed')
+	parser.add_argument('--meta_ssl_weight', default=0.4, type=float, help='weight for MetaWeightNet SSL loss')
+	parser.add_argument('--meta_behavior_weight', default=0.4, type=float, help='weight for MetaWeightNet behavior ranking loss')
+
+	parser.add_argument('--batch', default=2048, type=int, help='batch size')
+	parser.add_argument('--SSL_batch', default=64, type=int, help='batch size')
+	parser.add_argument('--reg', default=1e-4, type=float, help='weight decay regularizer')
+	parser.add_argument('--epoch', default=1000, type=int, help='number of epochs')
+	parser.add_argument('--shoot', default=10, type=int, help='K of top k')
+	parser.add_argument('--inner_product_mult', default=1, type=float, help='multiplier for the result')
+	parser.add_argument('--drop_rate', default=0.5, type=float, help='drop_rate')
+	parser.add_argument('--drop_rate1', default=0.5, type=float, help='drop_rate')
+	parser.add_argument('--seed', type=int, default=3407)
+	parser.add_argument('--slope', type=float, default=0.1)
+	parser.add_argument('--patience', type=int, default=100)
+	parser.add_argument('--path', default='datasets/', type=str, help='data path')
+	parser.add_argument('--target', default='buy', type=str, help='target behavior to predict on')
+	parser.add_argument('--isload', default=False, type=bool, help='whether load model')
+	parser.add_argument('--isJustTest', default=False, type=bool, help='whether load model')
+
+	parser.add_argument('--loadModelPath', default='', type=str, help='loadModelPath')
+	parser.add_argument('--hesitation_behavior', default='all', type=str, help='hesitation behaviors; "all" uses every auxiliary behavior, comma-separated names narrow the set')
+	parser.add_argument('--hesitation_weight', default=0.5, type=float, help='relative weight between hesitation-positive and hesitation-negative ranking terms')
+	parser.add_argument('--hesitation_bpr_weight', default=0.6, type=float, help='overall weight on hesitation-aware BPR loss')
+	parser.add_argument('--general_bpr_weight', default=1.0, type=float, help='weight on standard target-vs-negative BPR loss')
+	parser.add_argument('--hesitation_layers', default=3, type=int, help='number of LightGCN propagation layers for the hesitation model')
+	parser.add_argument('--hesitation_temperature', default=0.3, type=float, help='temperature used when mapping hesitation MI scores to confidences')
+	parser.add_argument('--injection_alpha', default=0.15, type=float, help='linear feature injection strength for counterfactual edge perturbation')
+	parser.add_argument('--mine_tau', default=0.3, type=float, help='temperature used in the InfoNCE/MINE objective')
+	parser.add_argument('--substitute_penalty', default=0.1, type=float, help='penalty applied to scores when substitute items were already purchased')
+	parser.add_argument('--substitute_cosine_threshold', default=0.7, type=float, help='cosine similarity threshold that marks an auxiliary item as a potential substitute')
+	parser.add_argument('--substitute_neg_margin', default=0.3, type=float, help='margin applied to negative cosine pairs when training substitute loss')
+	parser.add_argument('--substitute_loss_weight', default=0.1, type=float, help='weight assigned to the substitute consistency loss')
+
+	parser.add_argument('--head_num', default=4, type=int, help='head_num_of_multihead_attention')
+	
+	return parser.parse_args()
+args = parse_args()
