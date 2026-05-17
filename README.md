@@ -1,7 +1,7 @@
 # CHARM: Causal Hesitation Analysis for Recommendation via Mutual Information
 
 ## Introduction
-This project  implements an advanced multi-behavior recommendation system with the core model **CHARM**. The model aims to exploit various user interaction behaviors in e-commerce scenarios (e.g., click, favorite, cart, buy), specifically aiming to understand user **Hesitation** via **Causal Reasoning**, thereby improving the prediction accuracy of the user's final purchasing behavior.
+This work was accepted by SIGIR26
 
 ## Core Features
 *   **Multi-Behavior LightGCN**: Utilizes Graph Neural Networks (GCN) for feature propagation on the user-item bipartite graph to effectively integrate multi-behavior data.
