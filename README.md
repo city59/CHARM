@@ -1,4 +1,4 @@
-# CHARM: Causal Hesitation Analysis for Recommendation via Mutual Information
+# CHARM (SIGIR26)
 
 ## Introduction
 This work was accepted by SIGIR26
