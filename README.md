@@ -1,7 +1,7 @@
 # CHARM (SIGIR26)
 
 ## Introduction
-This work was accepted by SIGIR26
+This work was accepted by SIGIR26 [https://dl.acm.org/doi/10.1145/3805712.3809574]
 
 ## Core Features
 *   **Multi-Behavior LightGCN**: Utilizes Graph Neural Networks (GCN) for feature propagation on the user-item bipartite graph to effectively integrate multi-behavior data.
